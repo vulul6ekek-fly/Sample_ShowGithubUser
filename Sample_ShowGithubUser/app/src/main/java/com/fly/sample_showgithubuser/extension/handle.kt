@@ -1,5 +1,6 @@
 package com.fly.sample_showgithubuser.extension
 
+import android.os.Bundle
 import com.fly.sample_showgithubuser.data.vo.UserListVO
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -26,3 +27,9 @@ fun String.parseJsonArrayWithGson(): List<UserListVO>? {
     }
     return value
 }
+
+fun Bundle.saveInstance(key: String, value: String) {
+    this.putString(key, value)
+}
+
+fun Bundle.restoreInstanceString(key: String): String? = this.getString(key)

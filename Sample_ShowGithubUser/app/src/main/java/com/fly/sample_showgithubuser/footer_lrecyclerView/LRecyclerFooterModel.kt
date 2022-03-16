@@ -56,6 +56,11 @@ class LRecyclerFooterModel {
         recyclerView.destroyHeaderView()
     }
 
+    fun releaseResources(){
+        destroyHeaderView()
+        lRecyclerFooterAdapter.clearHandlerMessage()
+    }
+
     fun getItemCount(): Int = lRecyclerFooterAdapter.itemCount
 
     fun isHasMore(): Boolean = isHasMore

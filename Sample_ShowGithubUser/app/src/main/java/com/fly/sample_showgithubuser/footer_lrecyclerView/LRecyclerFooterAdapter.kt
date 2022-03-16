@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.fly.sample_showgithubuser.R
+import java.lang.ref.WeakReference
 import java.util.*
 
 class LRecyclerFooterAdapter(adapter: Adapter<RecyclerView.ViewHolder>) : LRecyclerAdapterDesign(adapter) {
@@ -242,6 +243,10 @@ class LRecyclerFooterAdapter(adapter: Adapter<RecyclerView.ViewHolder>) : LRecyc
 
     fun getHeaderViews(): ArrayList<View> {
         return mHeaderViews!!
+    }
+
+    fun clearHandlerMessage(){
+        mHandler.removeCallbacksAndMessages(null)
     }
 
     override fun destroy() {

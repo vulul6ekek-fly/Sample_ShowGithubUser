@@ -1,15 +1,18 @@
-package com.fly.sample_showgithubuser
+package com.fly.sample_showgithubuser.activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.fly.sample_showgithubuser.R
 import com.fly.sample_showgithubuser.adapter.UserListAdapter
 import com.fly.sample_showgithubuser.contract.UserListContract
 import com.fly.sample_showgithubuser.data.dao.UserListDAO
 import com.fly.sample_showgithubuser.data.vo.UserListVO
+import com.fly.sample_showgithubuser.extension.KEY_LIGIN
 import com.fly.sample_showgithubuser.footer_lrecyclerView.LRecyclerFooterModel
 import com.fly.sample_showgithubuser.presenter.UserListPresenter
 import com.fly.sample_showgithubuser.repository.UserListRepository
@@ -45,7 +48,7 @@ class MainActivity : AppCompatActivity(),LRecyclerFooterModel.LRecyclerFooterAct
     }
 
     override fun onItemClick(user: UserListVO) {
-
+        startActivity(Intent(this, UserDetailActivity::class.java).apply { putExtra(KEY_LIGIN, user.login) })
     }
 
     override fun getMoreData() {
@@ -63,7 +66,7 @@ class MainActivity : AppCompatActivity(),LRecyclerFooterModel.LRecyclerFooterAct
 
     override fun onDestroy() {
         super.onDestroy()
-        lRecyclerFooterModel.destroyHeaderView()
+        lRecyclerFooterModel.releaseResources()
     }
 
     private fun apiFail(errMessage: String) {
